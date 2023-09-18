@@ -11,7 +11,6 @@ public class GridChallenge {
                    row = row.substring(0, i) + letter2 + letter1 + row.substring(i+2);
                }
            }
-           System.out.println(row);
        }
        return row;
    }
