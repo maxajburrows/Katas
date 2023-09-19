@@ -1,13 +1,19 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class GridChallengeTest {
+    @Test
+    public void sortsOneRow() {
+        System.out.println(GridChallenge.sortRow("afqbcd"));
+    }
 
     @Test
-    public void returns7For16() {
-        GridChallenge gridChallenge = new GridChallenge();
-        System.out.println(gridChallenge.sortRow("afqbcd"));
-//        assertEquals(7, digitalRoot.reduceSums(16));
+    public void wholeCheck() {
+        List<String> grid = Arrays.asList("ebacd", "fghij", "olmkn", "trpqs", "xywuv");
+        System.out.println(GridChallenge.gridChallenge(grid));
     }
 }
