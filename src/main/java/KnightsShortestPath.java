@@ -20,6 +20,13 @@ public class KnightsShortestPath {
             return numMoves;
         }
 
+        String currentSquareConcat = Arrays.toString(currentSquare);
+        for (String square: previousSquares) {
+            if (currentSquareConcat.equals(square)) {
+                return 0;
+            }
+        }
+
         int count1 = 0;
         int count2 = 0;
         int count3 = 0;
@@ -30,17 +37,24 @@ public class KnightsShortestPath {
         int count8 = 0;
         // Check if current square is the same as any previous square. If so break
 
-        Integer squareNum = Integer.parseInt(currentSquare[1]);
         if (!currentSquare[0].equals("h") && !currentSquare[1].equals("8")) {
-            count1 = move1(previousSquares, currentSquare, endSquare, numMoves+1);
-            count2 = move2(previousSquares, currentSquare, endSquare, numMoves+1);
+            count1 = move1(previousSquares, currentSquare, endSquare, numMoves);
+            count2 = move2(previousSquares, currentSquare, endSquare, numMoves);
+        }
+        if (!currentSquare[0].equals("h") && !currentSquare[1].equals("1")) {
+            count3 = move3(previousSquares, currentSquare, endSquare, numMoves);
+            count4 = move3(previousSquares, currentSquare, endSquare, numMoves);
+        }
+        if (!currentSquare[0].equals("a") && !currentSquare[1].equals("8")) {
+            count5 = move5(previousSquares, currentSquare, endSquare, numMoves);
+            count6 = move6(previousSquares, currentSquare, endSquare, numMoves);
+        }
+        if (!currentSquare[0].equals("a") && !currentSquare[1].equals("1")) {
+            count7 = move7(previousSquares, currentSquare, endSquare, numMoves);
+            count8 = move8(previousSquares, currentSquare, endSquare, numMoves);
         }
 
-        // option 1
-
-
-
-        // Find maximum of all counts
+        // Find minimum of all counts. Filter out any counts that are zero.
 
         return 0;
     }
