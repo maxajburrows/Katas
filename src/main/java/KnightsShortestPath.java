@@ -36,22 +36,14 @@ public class KnightsShortestPath {
         int count7 = 0;
         int count8 = 0;
 
-        if (!currentSquare[0].equals("h") && !currentSquare[1].equals("8")) {
-            count1 = move1(previousSquares, currentSquare, endSquare, numMoves);
-            count2 = move2(previousSquares, currentSquare, endSquare, numMoves);
-        }
-        if (!currentSquare[0].equals("h") && !currentSquare[1].equals("1")) {
-            count3 = move3(previousSquares, currentSquare, endSquare, numMoves);
-            count4 = move4(previousSquares, currentSquare, endSquare, numMoves);
-        }
-        if (!currentSquare[0].equals("a") && !currentSquare[1].equals("8")) {
-            count5 = move5(previousSquares, currentSquare, endSquare, numMoves);
-            count6 = move6(previousSquares, currentSquare, endSquare, numMoves);
-        }
-        if (!currentSquare[0].equals("a") && !currentSquare[1].equals("1")) {
-            count7 = move7(previousSquares, currentSquare, endSquare, numMoves);
-            count8 = move8(previousSquares, currentSquare, endSquare, numMoves);
-        }
+        count1 = move(previousSquares, currentSquare, endSquare, numMoves, 2, 1);
+        count2 = move(previousSquares, currentSquare, endSquare, numMoves, 1, 2);
+        count3 = move(previousSquares, currentSquare, endSquare, numMoves, -2, 1);
+        count4 = move(previousSquares, currentSquare, endSquare, numMoves, -1, 2);
+        count5 = move(previousSquares, currentSquare, endSquare, numMoves, 2, -1);
+        count6 = move(previousSquares, currentSquare, endSquare, numMoves, 1, -2);
+        count7 = move(previousSquares, currentSquare, endSquare, numMoves, -1, -2);
+        count8 = move(previousSquares, currentSquare, endSquare, numMoves, -2, -1);
 
         int[] routes = new int[] { count1, count2, count3, count4, count5, count6, count7, count8 };
 
@@ -64,6 +56,10 @@ public class KnightsShortestPath {
     public static int move(List<String> previousSquares, String[] currentSquare, String[] endSquare, int numMoves, int numInc, int letInc) {
         String[] move = new String[] { changeLetter(currentSquare[0], letInc),
                 String.valueOf (Integer.parseInt(currentSquare[1]) + numInc) };
+        boolean squareIsValid = checkSquareIsValid(move);
+        if (!squareIsValid) {
+            return 0;
+        }
         List<String> previousSquaresCopy = new ArrayList<>(previousSquares);
         previousSquaresCopy.add(String.join("", currentSquare));
         return moveOptions(previousSquaresCopy, move, endSquare, numMoves + 1);
@@ -73,33 +69,13 @@ public class KnightsShortestPath {
         return String.valueOf((char) (currentValue.toCharArray()[0] + increment));
     }
 
-    public static int move1(List<String> previousSquares, String[] currentSquare, String[] endSquare, int numMoves) {
-        return move(previousSquares, currentSquare, endSquare, numMoves, 2, 1);
-    }
-
-    public static int move2(List<String> previousSquares, String[] currentSquare, String[] endSquare, int numMoves) {
-        return move(previousSquares, currentSquare, endSquare, numMoves, 1, 2);
-    }
-
-    public static int move3(List<String> previousSquares, String[] currentSquare, String[] endSquare, int numMoves) {
-        return move(previousSquares, currentSquare, endSquare, numMoves, -2, 1);
-    }
-
-    public static int move4(List<String> previousSquares, String[] currentSquare, String[] endSquare, int numMoves) {
-        return move(previousSquares, currentSquare, endSquare, numMoves, -1, 2);
-    }
-
-    public static int move5(List<String> previousSquares, String[] currentSquare, String[] endSquare, int numMoves) {
-        return move(previousSquares, currentSquare, endSquare, numMoves, 2, -1);
-    }
-    public static int move6(List<String> previousSquares, String[] currentSquare, String[] endSquare, int numMoves) {
-        return move(previousSquares, currentSquare, endSquare, numMoves, 1, -2);
-    }
-    public static int move7(List<String> previousSquares, String[] currentSquare, String[] endSquare, int numMoves) {
-        return move(previousSquares, currentSquare, endSquare, numMoves, -1, -2);
-    }
-
-    public static int move8(List<String> previousSquares, String[] currentSquare, String[] endSquare, int numMoves) {
-        return move(previousSquares, currentSquare, endSquare, numMoves, -2, -1);
+    private static boolean checkSquareIsValid(String[] move) {
+        if (Integer.parseInt(move[1]) < 1 || Integer.parseInt(move[1]) > 8) {
+            return false;
+        }
+        if (move[0].toCharArray()[0] < 97 || move[0].toCharArray()[0] > 104) {
+            return false;
+        }
+        return true;
     }
 }
