@@ -14,4 +14,12 @@ class Day6Test {
         assertEquals(288, result);
     }
 
+    @Test
+    public void question() {
+        int[] times = new int[] {55, 99, 97, 93};
+        int[] distances = new int[] {401, 1485, 2274, 1405};
+        int result = Day6.multipliedRaces(times, distances);
+        System.out.println(result);
+    }
+
 }
