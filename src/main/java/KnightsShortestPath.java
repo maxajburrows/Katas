@@ -23,6 +23,7 @@ public class KnightsShortestPath {
             makeMove(queuedSquares.remove(), endSplit);
             // return if square is found and distance
         }
+        return 0;
     }
 
     private int makeMove(Square square, String[] endLocation) {
@@ -44,6 +45,7 @@ public class KnightsShortestPath {
                 visitedSquares.add(newSquare);
             }
         }
+        return 0;
 
     }
 
