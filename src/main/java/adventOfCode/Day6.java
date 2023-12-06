@@ -15,8 +15,7 @@ public class Day6 {
     public static int raceSuccess(int raceTime, int recordDistance) {
         int successCounter = 0;
         for (int i=0; i <= raceTime; i++) {
-            int movingTime = raceTime - i;
-            int distanceTravelled = i*movingTime;
+            int distanceTravelled = i*(raceTime - i);
             if (distanceTravelled > recordDistance) {
                 successCounter++;
             }
