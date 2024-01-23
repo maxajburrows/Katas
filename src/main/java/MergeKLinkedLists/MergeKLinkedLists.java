@@ -6,7 +6,6 @@ public class MergeKLinkedLists {
 
     ListNode mergedList = new ListNode();
 
-
     public ListNode mergeKLists(ListNode[] lists) {
         int counter = 0;
         if (lists.length == 0) {
@@ -22,11 +21,10 @@ public class MergeKLinkedLists {
         if (allNodesEmpty) {
             return null;
         }
-
-        int lowValue = 10001;
         boolean listsRemaining = true;
 
         while (listsRemaining) {
+            int lowValue = 10001;
             int lowNode = 0;
             counter++;
             for (int i = 0; i < lists.length; i++) {
@@ -39,9 +37,7 @@ public class MergeKLinkedLists {
                 }
             }
             addNodeToMergedList(lowValue, counter);
-            if (lists[lowNode] == null) {
-                return mergedList;
-            }
+
             if (lists[lowNode].next == null ) {
                 lists[lowNode] = null;
             } else if (lists[lowNode].next.next == null) {
