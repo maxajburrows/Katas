@@ -6,8 +6,9 @@ public class MergeKLinkedLists {
 
     ListNode mergedList = new ListNode();
 
+    // Solution has long time and is memory inefficient. Can it be improved?
     public ListNode mergeKLists(ListNode[] lists) {
-        int counter = 0;
+
         if (lists.length == 0) {
             return null;
         }
@@ -21,6 +22,8 @@ public class MergeKLinkedLists {
         if (allNodesEmpty) {
             return null;
         }
+
+        int counter = 0;
         boolean listsRemaining = true;
 
         while (listsRemaining) {
@@ -54,7 +57,6 @@ public class MergeKLinkedLists {
                 }
             }
         }
-        System.out.println("Made it here");
         return mergedList;
     }
 
