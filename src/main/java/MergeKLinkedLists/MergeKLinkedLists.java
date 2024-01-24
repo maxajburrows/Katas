@@ -2,6 +2,8 @@ package MergeKLinkedLists;
 
 import java.util.Arrays;
 
+
+// TODO: Improve efficiency of this algorithm
 public class MergeKLinkedLists {
 
     ListNode mergedList = new ListNode();
@@ -41,6 +43,7 @@ public class MergeKLinkedLists {
             }
             addNodeToMergedList(lowValue, counter);
 
+            // TODO: Can be one line
             if (lists[lowNode].next == null ) {
                 lists[lowNode] = null;
             } else if (lists[lowNode].next.next == null) {
