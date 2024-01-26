@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.Set;
 
 public class InsertDeleteGetRandomOrder1DuplicatesAllowed {
     private ArrayList<HashMap<String, Integer>> randomNumbersList;
@@ -33,6 +33,9 @@ public class InsertDeleteGetRandomOrder1DuplicatesAllowed {
             HashMap<String, Integer> currentMap = randomNumbersList.get(i);
             if (currentMap.containsKey(removeKey)) {
                 currentMap.remove(removeKey);
+                if (currentMap.isEmpty()) {
+                    randomNumbersList.remove(i);
+                }
                 return true;
             }
         }
@@ -43,12 +46,12 @@ public class InsertDeleteGetRandomOrder1DuplicatesAllowed {
         int mapIndexToQuery = (int) (Math.random()*randomNumbersList.size());
         HashMap<String, Integer> mapToQuery = randomNumbersList.get(mapIndexToQuery);
         int mapIndexToGet = (int) (Math.random()*mapToQuery.size());
-        int value = 0;
+        System.out.println(mapIndexToGet);
+        int value = 80;
         int counter = 0;
-        for (String key : mapToQuery.keySet()) {
+        for (Integer currentValue : mapToQuery.values()) {
             if (counter == mapIndexToGet) {
-                value = mapToQuery.get(key);
-                return value;
+                return currentValue;
             }
             counter++;
         }
