@@ -27,7 +27,15 @@ public class InsertDeleteGetRandomOrder1DuplicatesAllowed {
     }
 
     public boolean remove(int val) {
-        return true;
+        String removeKey = String.valueOf(val);
+        for (int i = randomNumbersList.size()-1; i >= 0; i--) {
+            HashMap<String, Integer> currentMap = randomNumbersList.get(i);
+            if (currentMap.containsKey(removeKey)) {
+                currentMap.remove(removeKey);
+                return true;
+            }
+        }
+        return false;
     }
 
     public int getRandom() {
