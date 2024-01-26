@@ -16,12 +16,10 @@ public class InsertDeleteGetRandomOrder1DuplicatesAllowed {
         if (!indexMap.containsKey(val)) {
             indexMap.put(val, new HashSet<>(List.of(numbersList.size())));
             numbersList.add(val);
-            System.out.println(indexMap.toString());
             return true;
         }
         indexMap.get(val).add(numbersList.size());;
         numbersList.add(val);
-        System.out.println(indexMap.toString());
         return false;
     }
 
@@ -50,8 +48,6 @@ public class InsertDeleteGetRandomOrder1DuplicatesAllowed {
         }
         numbersList.remove(lastIndex);
 
-        System.out.println(numbersList);
-        System.out.println(indexMap.toString());
         return true;
     }
 
