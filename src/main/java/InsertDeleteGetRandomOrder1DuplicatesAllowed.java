@@ -1,82 +1,63 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Set;
+import java.util.*;
 
 public class InsertDeleteGetRandomOrder1DuplicatesAllowed {
 
-    private ArrayList<HashMap<String, Integer>> randomNumbersMapHolder;
+    private ArrayList<Integer> numbersList;
+    private HashMap<Integer, HashSet<Integer>> indexMap;
+    private Random random;
 
     public InsertDeleteGetRandomOrder1DuplicatesAllowed() {
-        this.randomNumbersMapHolder = new ArrayList<>();
-        HashMap<String, Integer> firstMap = new HashMap<String, Integer>();
-        randomNumbersMapHolder.add(firstMap);
+        this.numbersList = new ArrayList<>();
+        this.indexMap = new HashMap<Integer, HashSet<Integer>>();
+        this.random = new Random();
     }
 
     public boolean insert(int val) {
-        boolean itemPresent = true;
-        String newKey = String.valueOf(val);
-        for (HashMap<String, Integer> map : randomNumbersMapHolder) {
-            if (!map.containsKey(newKey)) {
-                map.put(newKey, val);
-                return itemPresent;
-            }
-            itemPresent = false;
+        if (!indexMap.containsKey(val)) {
+            indexMap.put(val, new HashSet<>(List.of(numbersList.size())));
+            numbersList.add(val);
+            System.out.println(indexMap.toString());
+            return true;
         }
-        HashMap<String, Integer> newMap = new HashMap<String, Integer>();
-        newMap.put(newKey, val);
-        randomNumbersMapHolder.add(newMap);
-        return itemPresent;
-    }
-
-    public boolean remove(int val) {
-        String removeKey = String.valueOf(val);
-        for (int i = randomNumbersMapHolder.size()-1; i >= 0; i--) {
-            HashMap<String, Integer> currentMap = randomNumbersMapHolder.get(i);
-            if (currentMap.containsKey(removeKey)) {
-                currentMap.remove(removeKey);
-                if (currentMap.isEmpty()) {
-                    randomNumbersMapHolder.remove(i);
-                }
-                return true;
-            }
-        }
+        indexMap.get(val).add(numbersList.size());;
+        numbersList.add(val);
+        System.out.println(indexMap.toString());
         return false;
     }
 
-    public int getRandom2() {
-        int totalValues = 0;
-        ArrayList<Integer> mapChooser = new ArrayList<>();
-        for (HashMap<String, Integer> map : randomNumbersMapHolder) {
-            totalValues += map.size();
+    public boolean remove(int val) {
+        if (!indexMap.containsKey(val)) {
+            return false;
         }
-        int numToQuery = (int) (Math.random()*totalValues);
-        for (HashMap<String, Integer> map : randomNumbersMapHolder) {
-            if (map.size() > numToQuery) {
-                int counter = 0;
-                for (Integer currentValue : map.values()) {
-                    if (counter == numToQuery) {
-                        return currentValue;
-                    }
-                    counter++;
-                }
-            }
-            numToQuery -= map.size();
+
+        HashSet<Integer> indexList = indexMap.get(val);
+        int indexToRemove = indexList.iterator().next();
+
+        if (indexList.size() == 1) {
+            indexMap.remove(val);
+        } else {
+            indexList.remove(indexToRemove);
         }
-        return 80085;
+
+        int lastIndex = numbersList.size()-1;
+
+        if (indexToRemove != lastIndex) {
+            Integer lastValue = numbersList.get(lastIndex);
+            numbersList.set(indexToRemove, lastValue);
+            HashSet<Integer> lastValueIndexes = indexMap.get(lastValue);
+            lastValueIndexes.remove(lastIndex);
+            lastValueIndexes.add(indexToRemove);
+        }
+        numbersList.remove(lastIndex);
+
+        System.out.println(numbersList);
+        System.out.println(indexMap.toString());
+        return true;
     }
 
 
     public int getRandom() {
-        int mapIndexToQuery = (int) (Math.random()*randomNumbersMapHolder.size());
-        HashMap<String, Integer> mapToQuery = randomNumbersMapHolder.get(mapIndexToQuery);
-        int mapIndexToGet = (int) (Math.random()*mapToQuery.size());
-        int counter = 0;
-        for (Integer currentValue : mapToQuery.values()) {
-            if (counter == mapIndexToGet) {
-                return currentValue;
-            }
-            counter++;
-        }
-        return 80085;
+        int randomIndex = random.nextInt(numbersList.size());
+        return numbersList.get(randomIndex);
     }
 }
