@@ -48,7 +48,7 @@ public class NQueens {
                 return null;
             }
         }
-
+        return null;
 
 
 
