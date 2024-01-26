@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class InsertDeleteGetRandomOrder1DuplicatesAllowed {
     private ArrayList<HashMap<String, Integer>> randomNumbersList;
@@ -39,6 +40,18 @@ public class InsertDeleteGetRandomOrder1DuplicatesAllowed {
     }
 
     public int getRandom() {
-        return 0;
+        int mapIndexToQuery = (int) (Math.random()*randomNumbersList.size());
+        HashMap<String, Integer> mapToQuery = randomNumbersList.get(mapIndexToQuery);
+        int mapIndexToGet = (int) (Math.random()*mapToQuery.size());
+        int value = 0;
+        int counter = 0;
+        for (String key : mapToQuery.keySet()) {
+            if (counter == mapIndexToGet) {
+                value = mapToQuery.get(key);
+                return value;
+            }
+            counter++;
+        }
+        return value;
     }
 }
