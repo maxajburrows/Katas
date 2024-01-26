@@ -43,18 +43,39 @@ public class InsertDeleteGetRandomOrder1DuplicatesAllowed {
     }
 
     public int getRandom() {
-        int mapIndexToQuery = (int) (Math.random()*randomNumbersList.size());
-        HashMap<String, Integer> mapToQuery = randomNumbersList.get(mapIndexToQuery);
-        int mapIndexToGet = (int) (Math.random()*mapToQuery.size());
-        System.out.println(mapIndexToGet);
-        int value = 80;
-        int counter = 0;
-        for (Integer currentValue : mapToQuery.values()) {
-            if (counter == mapIndexToGet) {
-                return currentValue;
-            }
-            counter++;
+        int totalValues = 0;
+        for (HashMap<String, Integer> map : randomNumbersList) {
+            totalValues += map.size();
         }
-        return value;
+        int numToQuery = (int) (Math.random()*totalValues);
+        for (HashMap<String, Integer> map : randomNumbersList) {
+            if (map.size() > numToQuery) {
+                int counter = 0;
+                for (Integer currentValue : map.values()) {
+                    if (counter == numToQuery) {
+                        return currentValue;
+                    }
+                    counter++;
+                }
+            }
+            numToQuery -= map.size();
+        }
+        return 8008;
     }
+
+
+//    public int getRandom() {
+//        int mapIndexToQuery = (int) (Math.random()*randomNumbersList.size());
+//        HashMap<String, Integer> mapToQuery = randomNumbersList.get(mapIndexToQuery);
+//        int mapIndexToGet = (int) (Math.random()*mapToQuery.size());
+//        int value = 80;
+//        int counter = 0;
+//        for (Integer currentValue : mapToQuery.values()) {
+//            if (counter == mapIndexToGet) {
+//                return currentValue;
+//            }
+//            counter++;
+//        }
+//        return value;
+//    }
 }
