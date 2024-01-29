@@ -10,7 +10,7 @@ public class ImplementQueueUsingStacks {
     }
 
     public void push(int x) {
-
+        stack1.push(x);
     }
 
     public int pop() {
