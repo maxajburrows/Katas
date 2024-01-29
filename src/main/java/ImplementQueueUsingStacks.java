@@ -1,43 +1,36 @@
 import java.util.Stack;
 
 public class ImplementQueueUsingStacks {
-    Stack<Integer> stack1;
-    Stack<Integer> stack2;
+    Stack<Integer> inputStack;
+    Stack<Integer> outputStack;
 
     public ImplementQueueUsingStacks() {
-        stack1 = new Stack<Integer>();
-        stack2 = new Stack<Integer>();
+        inputStack = new Stack<Integer>();
+        outputStack = new Stack<Integer>();
     }
 
     public void push(int x) {
-        stack1.push(x);
+        while (!outputStack.isEmpty()) {
+            inputStack.push(outputStack.pop());
+        }
+        outputStack.push(x);
     }
 
     public int pop() {
-        int firstItem = stack1.pop();
-        while (!stack1.isEmpty()) {
-            stack2.push(firstItem);
-            firstItem = stack1.pop();
+        while (!inputStack.isEmpty()) {
+            outputStack.push(inputStack.pop());
         }
-        while (!stack2.isEmpty()) {
-            stack1.push(stack2.pop());
-        }
-        return firstItem;
+        return outputStack.pop();
     }
 
     public int peek() {
-        int firstItem = 80085;
-        while (!stack1.isEmpty()) {
-            firstItem = stack1.pop();
-            stack2.push(firstItem);
+        while (!inputStack.isEmpty()) {
+            outputStack.push(inputStack.pop());
         }
-        while (!stack2.isEmpty()) {
-            stack1.push(stack2.pop());
-        }
-        return firstItem;
+        return outputStack.peek();
     }
 
     public boolean empty() {
-        return stack1.isEmpty();
+        return inputStack.isEmpty() && outputStack.isEmpty();
     }
 }
