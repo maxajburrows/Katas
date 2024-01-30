@@ -1,7 +1,39 @@
+import java.util.Objects;
+
 public class EvaluateReversePolishNotation {
 
     public int evalRPN(String[] tokens) {
-        // Remove last value from String/Stack/StringBuilder
-        // Check if it is an operand or operator
+        int itemsRemaining = tokens.length;
+        String lastOperator = tokens[--itemsRemaining];
+        return calculate(tokens, itemsRemaining, lastOperator);
+    }
+
+    public int calculate(String[] tokens, int itemsRemaining, String operator) {
+        String newItem = tokens[--itemsRemaining];
+        if (checkIfOperator(operator)) {
+            return applyOperation(operator, calculate(tokens, itemsRemaining, newItem), Integer.parseInt(tokens[itemsRemaining-1]));
+        }
+        String itemAfter = tokens[--itemsRemaining];
+        if (checkIfOperator(operator)) {
+            return applyOperation(operator, calculate(tokens, itemsRemaining, newItem), Integer.parseInt(tokens[itemsRemaining-1]));
+        }
+        return applyOperation(operator, Integer.parseInt(itemAfter), Integer.parseInt(newItem));
+    }
+
+    public boolean checkIfOperator(String item) {
+        return item.equals("+")
+                || item.equals("-")
+                || item.equals("*")
+                || item.equals("/");
+    }
+
+    public int applyOperation(String operator, int a, int b) {
+        return switch (operator) {
+            case "+" -> a + b;
+            case "-" -> a - b;
+            case "*" -> a * b;
+            case "/" -> a / b;
+            default -> 0;
+        };
     }
 }
