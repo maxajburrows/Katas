@@ -24,4 +24,14 @@ class EvaluateReversePolishNotationTest {
 
     }
 
+    @Test
+    void test4() {
+        String[] tokens = new String[]{"4","-2","/","2","-3","-","-"};
+        EvaluateReversePolishNotation evaluate = new EvaluateReversePolishNotation();
+        int actualResult = evaluate.evalRPN(tokens);
+        int expectedResult = 6;
+        assertEquals(expectedResult, actualResult);
+
+    }
+
 }

@@ -5,6 +5,9 @@ public class EvaluateReversePolishNotation {
 
     public int evalRPN(String[] tokens) {
         itemsRemaining = tokens.length;
+        if (itemsRemaining == 1) {
+            return Integer.parseInt(tokens[0]);
+        }
         String lastOperator = tokens[--itemsRemaining];
         return calculate(tokens, lastOperator);
     }
