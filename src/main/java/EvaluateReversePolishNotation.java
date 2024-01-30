@@ -1,23 +1,24 @@
 import java.util.Objects;
 
 public class EvaluateReversePolishNotation {
+    int itemsRemaining;
 
     public int evalRPN(String[] tokens) {
-        int itemsRemaining = tokens.length;
+        itemsRemaining = tokens.length;
         String lastOperator = tokens[--itemsRemaining];
-        return calculate(tokens, itemsRemaining, lastOperator);
+        return calculate(tokens, lastOperator);
     }
 
-    public int calculate(String[] tokens, int itemsRemaining, String operator) {
+    public int calculate(String[] tokens, String operator) {
         String newItem = tokens[--itemsRemaining];
         if (checkIfOperator(newItem)) {
-            return applyOperation(operator, calculate(tokens, itemsRemaining, newItem), Integer.parseInt(tokens[itemsRemaining]));
+            return applyOperation(operator, calculate(tokens, newItem), Integer.parseInt(tokens[itemsRemaining-1]));
         }
         String itemAfter = tokens[--itemsRemaining];
         if (checkIfOperator(itemAfter)) {
-            return applyOperation(operator, calculate(tokens, itemsRemaining, itemAfter), Integer.parseInt(tokens[itemsRemaining+1]));
+            return applyOperation(operator, Integer.parseInt(newItem), calculate(tokens, itemAfter));
         }
-        return applyOperation(operator, Integer.parseInt(itemAfter), Integer.parseInt(newItem));
+        return applyOperation(operator, Integer.parseInt(newItem), Integer.parseInt(itemAfter));
     }
 
     public boolean checkIfOperator(String item) {
@@ -29,10 +30,10 @@ public class EvaluateReversePolishNotation {
 
     public int applyOperation(String operator, int a, int b) {
         return switch (operator) {
-            case "+" -> a + b;
-            case "-" -> a - b;
-            case "*" -> a * b;
-            case "/" -> a / b;
+            case "+" -> b + a;
+            case "-" -> b - a;
+            case "*" -> b * a;
+            case "/" -> b / a;
             default -> 0;
         };
     }
