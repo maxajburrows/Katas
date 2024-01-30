@@ -10,12 +10,12 @@ public class EvaluateReversePolishNotation {
 
     public int calculate(String[] tokens, int itemsRemaining, String operator) {
         String newItem = tokens[--itemsRemaining];
-        if (checkIfOperator(operator)) {
+        if (checkIfOperator(newItem)) {
             return applyOperation(operator, calculate(tokens, itemsRemaining, newItem), Integer.parseInt(tokens[itemsRemaining-1]));
         }
         String itemAfter = tokens[--itemsRemaining];
-        if (checkIfOperator(operator)) {
-            return applyOperation(operator, calculate(tokens, itemsRemaining, newItem), Integer.parseInt(tokens[itemsRemaining-1]));
+        if (checkIfOperator(itemAfter)) {
+            return applyOperation(operator, calculate(tokens, itemsRemaining, itemAfter), Integer.parseInt(tokens[itemsRemaining-1]));
         }
         return applyOperation(operator, Integer.parseInt(itemAfter), Integer.parseInt(newItem));
     }
