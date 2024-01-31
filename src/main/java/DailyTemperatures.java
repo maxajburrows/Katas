@@ -7,33 +7,42 @@ public class DailyTemperatures {
             int counter = 0;
             int comparisonTemp = temperatures[i];
             boolean nothingLower = true;
-            boolean lowerLoop = false;
+//            boolean lowerLoop = false;
+            boolean foundHigher = false;
             for (int j=1; i+j < arrayLength; j++) {
                 counter++;
-                if (temperatures[i+j] < comparisonTemp || temperatures[j-1] < temperatures[j]) {
+                if (temperatures[i+j] < comparisonTemp) {
                     nothingLower = false;
                 }
                 if (temperatures[i+j] > comparisonTemp) {
+                    foundHigher = true;
                     break;
                 }
-                if (i+j == arrayLength-1) {
-                    if (nothingLower && i < arrayLength-1) {
-                        return answersArray;
-                    }
-                    answersArray[i] = 0;
-                    lowerLoop = true;
-                }
+//                if (i+j == arrayLength-1) {
+//                    if (nothingLower && i < arrayLength-1) {
+//                        return answersArray;
+//                    }
+//                    answersArray[i] = 0;
+//                    lowerLoop = true;
+//                }
             }
-            if (!lowerLoop) {
+            if (!foundHigher) {
+                if (nothingLower) {
+                    return answersArray;
+                }
+                answersArray[i] = 0;
+            } else {
                 answersArray[i] = counter;
-            }
-            if (nothingLower && i < arrayLength-1) {
-                int countdown = counter;
-                for (int j=i+1; j < i+counter; j++) {
-                    answersArray[j] = --countdown;
+//            answersArray[i] = counter;
+                if (nothingLower && i < arrayLength-1) {
+                    int countdown = counter;
+                    for (int j=i+1; j < i+counter; j++) {
+                        answersArray[j] = --countdown;
+                    }
+                    i += (counter-1);
                 }
-                i += (counter-1);
             }
+
         }
         return answersArray;
     }
