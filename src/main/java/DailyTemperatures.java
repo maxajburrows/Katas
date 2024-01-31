@@ -7,24 +7,32 @@ public class DailyTemperatures {
             int counter = 0;
             int comparisonTemp = temperatures[i];
             boolean nothingLower = true;
+            boolean lowerLoop = false;
             for (int j=1; i+j < arrayLength; j++) {
                 counter++;
-                if (temperatures[i+j] < comparisonTemp) {
+                if (temperatures[i+j] < comparisonTemp || temperatures[j-1] < temperatures[j]) {
                     nothingLower = false;
                 }
                 if (temperatures[i+j] > comparisonTemp) {
                     break;
                 }
                 if (i+j == arrayLength-1) {
-                    counter = 0;
+                    if (nothingLower && i < arrayLength-1) {
+                        return answersArray;
+                    }
+                    answersArray[i] = 0;
+                    lowerLoop = true;
                 }
             }
-            answersArray[i] = counter;
-            if (!nothingLower) {
-                for (int j=i+1; j < arrayLength; j++) {
-                    answersArray[j] = --counter;
+            if (!lowerLoop) {
+                answersArray[i] = counter;
+            }
+            if (nothingLower && i < arrayLength-1) {
+                int countdown = counter;
+                for (int j=i+1; j < i+counter; j++) {
+                    answersArray[j] = --countdown;
                 }
-                break;
+                i += (counter-1);
             }
         }
         return answersArray;
