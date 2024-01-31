@@ -9,9 +9,11 @@ public class DailyTemperatures {
             boolean nothingLower = true;
 //            boolean lowerLoop = false;
             boolean foundHigher = false;
+            int lowerIndex = 0;
             for (int j=1; i+j < arrayLength; j++) {
                 counter++;
-                if (temperatures[i+j] < comparisonTemp) {
+                if (temperatures[i+j] < comparisonTemp && nothingLower) {
+                    lowerIndex = i+j;
                     nothingLower = false;
                 }
                 if (temperatures[i+j] > comparisonTemp) {
@@ -30,7 +32,8 @@ public class DailyTemperatures {
                 if (nothingLower) {
                     return answersArray;
                 }
-                answersArray[i] = 0;
+                i = lowerIndex-1;
+//                answersArray[i] = 0;
             } else {
                 answersArray[i] = counter;
 //            answersArray[i] = counter;
@@ -39,8 +42,13 @@ public class DailyTemperatures {
                     for (int j=i+1; j < i+counter; j++) {
                         answersArray[j] = --countdown;
                     }
-                    i += (counter-1);
+                    if (i + counter == arrayLength-1) {
+                        return answersArray;
+                    }
+
                 }
+
+                //i += (counter-1);
             }
 
         }
