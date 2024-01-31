@@ -8,8 +8,11 @@ public class DailyTemperatures {
             int comparisonTemp = temperatures[i];
             for (int j=1; i+j < arrayLength; j++) {
                 counter++;
-                if (temperatures[i+j] == comparisonTemp) {
+                if (temperatures[i+j] > comparisonTemp) {
                     break;
+                }
+                if (i+j == arrayLength-1) {
+                    counter = 0;
                 }
             }
             answersArray[i] = counter;
