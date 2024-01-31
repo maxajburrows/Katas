@@ -16,7 +16,9 @@ public class EvaluateReversePolishNotation {
                     stack.push(stack.pop() * stack.pop());
                     break;
                 case "/":
-                    stack.push((1/stack.pop()) * stack.pop());
+                    int denominator = stack.pop();
+                    int numerator = stack.pop();
+                    stack.push(numerator / denominator);
                     break;
                 default:
                     stack.push(Integer.parseInt(token));
@@ -24,5 +26,4 @@ public class EvaluateReversePolishNotation {
         }
         return stack.pop();
     }
-
 }

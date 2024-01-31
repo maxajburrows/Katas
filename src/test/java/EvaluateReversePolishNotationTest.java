@@ -11,7 +11,6 @@ class EvaluateReversePolishNotationTest {
         int actualResult = evaluate.evalRPN(tokens);
         int expectedResult = 9;
         assertEquals(expectedResult, actualResult);
-
     }
 
     @Test
@@ -21,7 +20,6 @@ class EvaluateReversePolishNotationTest {
         int actualResult = evaluate.evalRPN(tokens);
         int expectedResult = 6;
         assertEquals(expectedResult, actualResult);
-
     }
 
     @Test
@@ -29,9 +27,7 @@ class EvaluateReversePolishNotationTest {
         String[] tokens = new String[]{"4","-2","/","2","-3","-","-"};
         EvaluateReversePolishNotation evaluate = new EvaluateReversePolishNotation();
         int actualResult = evaluate.evalRPN(tokens);
-        int expectedResult = 6;
+        int expectedResult = -7;
         assertEquals(expectedResult, actualResult);
-
     }
-
 }
