@@ -7,7 +7,7 @@ public class DailyTemperatures {
         int length = temperatures.length;
         int[] answersArray = new int[length];
         for (int i = length-1; i >=0; i--) {
-            while (!indexStack.isEmpty() && temperatures[i] > temperatures[indexStack.peek()]) {
+            while (!indexStack.isEmpty() && temperatures[i] >= temperatures[indexStack.peek()]) {
                 indexStack.pop();
             }
             if (!indexStack.isEmpty()) {

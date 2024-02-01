@@ -25,7 +25,7 @@ class DailyTemperaturesTest {
     void test3() {
         DailyTemperatures dailyTemperatures = new DailyTemperatures();
         int[] temperatures = new int[]{80,80,80,34,80,80,34,80,80,80};
-        int[] expectedResult = new int[]{1,0,0,0,1,0,0,0,0,0};
+        int[] expectedResult = new int[]{0,0,0,1,0,0,1,0,0,0};
         int[] actualResult = dailyTemperatures.dailyTemperatures(temperatures);
         assertArrayEquals(expectedResult, actualResult);
     }
