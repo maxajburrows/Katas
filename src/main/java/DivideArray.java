@@ -9,11 +9,14 @@ public class DivideArray {
             int[] indexArray = new int[3];
             // Can replace with System.arraycopy later
             for (int j=0; j < 3; j++) {
+                if (nums[i*3]+k < nums[i*3+j]) {
+                    return new int[0][0];
+                }
                 indexArray[j] = nums[i*3+j];
             }
-            if (indexArray[0] + k < indexArray[2]) {
-                return new int[0][0];
-            }
+//            if (indexArray[0] + k < indexArray[2]) {
+//                return new int[0][0];
+//            }
             answerArray[i] = indexArray;
         }
         return answerArray;
