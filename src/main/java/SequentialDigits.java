@@ -20,6 +20,7 @@ public class SequentialDigits {
                 }
             }
             resultList.add(integer);
+            integer += (int) Math.pow(10, splitInt.size()-1);
         }
         return resultList;
     }
