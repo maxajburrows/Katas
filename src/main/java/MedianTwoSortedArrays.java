@@ -7,13 +7,29 @@ public class MedianTwoSortedArrays {
         double median2 = calculateMedian(nums2);
 
         // Find distance of median of first array from median of second array
-        double indexDistance = findIndexOffset(nums2, median1);
+        int index2 = findIndexOffset(nums2, median1);
+        int indexDistance = index2+1 - length2/2;
 
         return 0;
     }
 
-    private double findIndexOffset(int[] nums, double median) {
+    private int findIndexOffset(int[] nums, double median) {
+        int left = 0;
+        int right = nums.length-1;
+        int mid = 0;
+        double epsilon = 1e-10;
 
+        while (left <= right) {
+            mid = left + (right-left)/2;
+            if (Math.abs(nums[mid] - median) < epsilon) {
+                break;
+            } else if (nums[mid] < median) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return mid;
     }
 
     public double calculateMedian(int[] nums) {
