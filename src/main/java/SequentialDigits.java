@@ -6,13 +6,14 @@ public class SequentialDigits {
         List<Integer> resultList = new ArrayList<>();
         for (int i=1; i <= 9; i++) {
             int number = i;
-            int nextDigit = i + 1;
-            while (nextDigit <= 9 && number <= high) {
-                number = number*10 + nextDigit;
-                if (number >= low && number <= high) {
+            for (int j=i+1; j <=9; j++) {
+                number = number*10 + j;
+                if (number > high) {
+                    break;
+                }
+                if (number >= low) {
                     resultList.add(number);
                 }
-                nextDigit++;
             }
         }
         Collections.sort(resultList);
