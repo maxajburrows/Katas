@@ -8,12 +8,13 @@ public class SequentialDigits {
         ArrayList<Integer> resultList = new ArrayList<>();
         OUTER:
         for (int integer=low; integer <= high; integer++) {
-            Integer[] splitInt = Arrays.stream(String.valueOf(integer)
-                            .split(""))
-                    .map(Integer::parseInt)
-                    .toArray(Integer[]::new);
+            char[] splitChars = String.valueOf(integer).toCharArray();
+            int[] splitInt = new int[splitChars.length];
+            for (int i=0; i < splitChars.length; i++) {
+                splitInt[i] = Character.getNumericValue(splitChars[i]);
+            }
             for (int j = 0; j < splitInt.length - 1; j++) {
-                if (!splitInt[j].equals(splitInt[j+1]-1)) {
+                if (splitInt[j] != (splitInt[j+1]-1)) {
                     continue OUTER;
                 }
             }
