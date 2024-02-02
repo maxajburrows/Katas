@@ -14,7 +14,7 @@ public class SequentialDigits {
                     .map(Integer::parseInt)
                     .toArray(Integer[]::new);
             for (int j = 0; j < splitInt.length - 1; j++) {
-                if (!splitInt[j].equals(splitInt[j + 1])) {
+                if (!splitInt[j].equals(splitInt[j+1]-1)) {
                     continue OUTER;
                 }
             }
