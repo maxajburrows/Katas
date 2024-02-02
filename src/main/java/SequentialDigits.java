@@ -6,9 +6,8 @@ import java.util.stream.IntStream;
 public class SequentialDigits {
     public List<Integer> sequentialDigits(int low, int high) {
         ArrayList<Integer> resultList = new ArrayList<>();
-        int[] testArray = IntStream.rangeClosed(low, high).toArray();
         OUTER:
-        for (int integer : testArray) {
+        for (int integer=low; integer <= high; integer++) {
             Integer[] splitInt = Arrays.stream(String.valueOf(integer)
                             .split(""))
                     .map(Integer::parseInt)
