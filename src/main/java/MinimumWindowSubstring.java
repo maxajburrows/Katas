@@ -1,7 +1,7 @@
 public class MinimumWindowSubstring {
     public String minWindow(String s, String t) {
         String resultString = "";
-        for (int l=0; l < s.length() - t.length(); l++) {
+        for (int l=0; l <= s.length() - t.length(); l++) {
             String[] splitT = t.split("");
             for (int i=l+t.length(); i <= s.length(); i++) {
                 String testString = s.substring(l, i);
