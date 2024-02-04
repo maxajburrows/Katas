@@ -9,6 +9,7 @@ public class MinimumWindowSubstring {
 //    }
     public String minWindow(String s, String t) {
         String resultString = "";
+        // TODO: To improve time complexity solve using a sliding window approach and possibly a hashmap.
         for (int l=0; l <= s.length() - t.length(); l++) {
             String[] splitT = t.split("");
             for (int i=l+t.length(); i <= s.length(); i++) {
