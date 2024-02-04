@@ -17,9 +17,11 @@ public class MinimumWindowSubstring {
                 }
                 if (l == 0 && containedLetters == splitT.length) {
                     resultString = testString;
+                    break;
                 }
                 if (containedLetters == splitT.length && testString.length() < resultString.length()) {
                     resultString = testString;
+                    break;
                 }
             }
             if (resultString.isEmpty()) {
