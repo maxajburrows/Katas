@@ -1,5 +1,4 @@
 public class MinimumWindowSubstring {
-
     public String minWindow(String s, String t) {
         // Loop through s once increasing the range as you go
         String[] splitT = t.split("");
@@ -9,7 +8,7 @@ public class MinimumWindowSubstring {
             int containedLetters = 0;
             for (int j=0; j < splitT.length; j++) {
                 for (int k=0; k < splitTestString.length; k++) {
-                    if (splitT[i].equals(splitTestString[j])) {
+                    if (splitT[j].equals(splitTestString[k])) {
                         containedLetters++;
                         break;
                     }
