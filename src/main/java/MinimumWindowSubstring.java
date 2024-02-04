@@ -1,6 +1,5 @@
 public class MinimumWindowSubstring {
     public String minWindow(String s, String t) {
-        // Loop through s once increasing the range as you go
         String resultString = "";
         for (int l=0; l < s.length() - t.length(); l++) {
             String[] splitT = t.split("");
