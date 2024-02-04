@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class MinimumWindowSubstring {
     public String minWindow(String s, String t) {
         String resultString = "";
@@ -5,12 +9,13 @@ public class MinimumWindowSubstring {
             String[] splitT = t.split("");
             for (int i=l+t.length(); i <= s.length(); i++) {
                 String testString = s.substring(l, i);
-                String[] splitTestString = testString.split("");
+                ArrayList<String> splitTestString = new ArrayList<String>(Arrays.asList(testString.split("")));
                 int containedLetters = 0;
                 for (int j=0; j < splitT.length; j++) {
-                    for (int k=0; k < splitTestString.length; k++) {
-                        if (splitT[j].equals(splitTestString[k])) {
+                    for (int k=0; k < splitTestString.size(); k++) {
+                        if (splitT[j].equals(splitTestString.get(k))) {
                             containedLetters++;
+                            splitTestString.remove(k);
                             break;
                         }
                     }
