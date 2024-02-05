@@ -3,8 +3,8 @@ public class FirstUniqueCharacter {
         OUTER:
         for (int i=0; i < s.length(); i++) {
             char testChar = s.charAt(i);
-            for (int j=i+1; j < s.length(); j++) {
-                if (testChar == s.charAt(j)) {
+            for (int j=0; j < s.length(); j++) {
+                if (testChar == s.charAt(j) && i != j) {
                     continue OUTER;
                 }
             }
