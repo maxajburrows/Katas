@@ -18,7 +18,7 @@ public class FirstUniqueCharacter {
         return -1;
     }
 
-    public int firstUniqChar(String s) {
+    public int firstUniqCharHashMap(String s) {
         HashMap<Character, Integer> characterMap = new HashMap<>();
         Set<Integer> duplicatedSet = new HashSet<>();
         for (int i=0; i < s.length(); i++) {
@@ -34,6 +34,11 @@ public class FirstUniqueCharacter {
                 return i;
             }
         }
+        return -1;
+    }
+
+    public int firstUniqChar(String s) {
+
         return -1;
     }
 }
