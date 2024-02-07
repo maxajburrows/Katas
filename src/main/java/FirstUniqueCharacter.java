@@ -38,7 +38,15 @@ public class FirstUniqueCharacter {
     }
 
     public int firstUniqChar(String s) {
-
+        int [] characterFrequency = new int[26];
+        for (char character : s.toCharArray()) {
+            characterFrequency[character - 'a']++;
+        }
+        for (int i=0; i < s.length(); i++) {
+            if (characterFrequency[i] == 1) {
+                return i;
+            }
+        }
         return -1;
     }
 }
