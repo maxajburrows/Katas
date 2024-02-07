@@ -43,7 +43,8 @@ public class FirstUniqueCharacter {
             characterFrequency[character - 'a']++;
         }
         for (int i=0; i < s.length(); i++) {
-            if (characterFrequency[i] == 1) {
+            char character = s.charAt(i);
+            if (characterFrequency[character - 'a'] == 1) {
                 return i;
             }
         }
