@@ -6,6 +6,7 @@ public class GroupAnagram {
     public List<List<String>> groupAnagrams(String[] strs) {
         List<List<String>> resultList = new ArrayList<>();
         List<int[]> characterCompositions = new ArrayList<>();
+        OUTER:
         for (String str : strs) {
             int[] characters = buildCharacterComposition(str);
             if (characterCompositions.isEmpty()) {
@@ -16,11 +17,11 @@ public class GroupAnagram {
             for (int i=0; i < characterCompositions.size(); i++) {
                 if (Arrays.equals(characters, characterCompositions.get(i))) {
                     resultList.get(i).add(str);
-                    break;
+                    continue OUTER;
                 }
-                resultList.add(new ArrayList<>(List.of(str)));
-                characterCompositions.add(characters);
             }
+            resultList.add(new ArrayList<>(List.of(str)));
+            characterCompositions.add(characters);
         }
         return resultList;
     }
