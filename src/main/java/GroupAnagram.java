@@ -8,14 +8,19 @@ public class GroupAnagram {
         List<int[]> characterCompositions = new ArrayList<>();
         for (String str : strs) {
             int[] characters = buildCharacterComposition(str);
+            if (characterCompositions.isEmpty()) {
+                resultList.add(new ArrayList<>(List.of(str)));
+                characterCompositions.add(characters);
+                continue;
+            }
             for (int i=0; i < characterCompositions.size(); i++) {
                 if (Arrays.equals(characters, characterCompositions.get(i))) {
                     resultList.get(i).add(str);
                     break;
                 }
+                resultList.add(new ArrayList<>(List.of(str)));
+                characterCompositions.add(characters);
             }
-            resultList.add(new ArrayList<>(List.of(str)));
-            characterCompositions.add(characters);
         }
         return resultList;
     }
