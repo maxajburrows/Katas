@@ -1,7 +1,13 @@
 public class FindTheTownJudge {
     public int findJudge(int n, int[][] trust) {
 
+        int trustsJudge = n - 1;
+
+        int trustCount = 0;
         // Look for index of trusted person
+        for (int i=0; i < trust.length; i++) {
+
+        }
 
         // Count the number of people that trust them - if not all -1
 
