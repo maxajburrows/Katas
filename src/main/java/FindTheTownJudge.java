@@ -9,11 +9,11 @@ public class FindTheTownJudge {
         }
 
         HashMap<Integer, Integer> possibleJudgeMap = new HashMap<>();
-        for (int[] ints : trust) {
-            possibleJudgeMap.merge(ints[1], 1, Integer::sum);
+        for (int[] person : trust) {
+            possibleJudgeMap.merge(person[1], 1, Integer::sum);
         }
-        for (int[] ints : trust) {
-            possibleJudgeMap.remove(ints[0]);
+        for (int[] person : trust) {
+            possibleJudgeMap.remove(person[0]);
         }
 
         for (Map.Entry<Integer, Integer> possibleJudge : possibleJudgeMap.entrySet()) {
