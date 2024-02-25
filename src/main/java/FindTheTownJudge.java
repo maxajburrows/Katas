@@ -11,6 +11,8 @@ public class FindTheTownJudge {
         HashMap<Integer, Integer> possibleJudgeMap = new HashMap<>();
         for (int[] ints : trust) {
             possibleJudgeMap.merge(ints[1], 1, Integer::sum);
+        }
+        for (int[] ints : trust) {
             possibleJudgeMap.remove(ints[0]);
         }
 
