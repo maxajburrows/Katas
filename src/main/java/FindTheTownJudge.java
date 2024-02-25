@@ -1,18 +1,20 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 public class FindTheTownJudge {
     public int findJudge(int n, int[][] trust) {
-
-        int trustsJudge = n - 1;
-
-        int trustCount = 0;
-        // Look for index of trusted person
+        HashMap<Integer, Integer> possibleJudgeMap = new HashMap<>();
         for (int i=0; i < trust.length; i++) {
-
+            possibleJudgeMap.merge(trust[i][1], 1, Integer::sum);
+            possibleJudgeMap.remove(trust[i][0]);
         }
 
-        // Count the number of people that trust them - if not all -1
-
-        // See if trusted person trusts anyone - if they do return -1
-
-        return 0;
+        for (Map.Entry<Integer, Integer> possibleJudge : possibleJudgeMap.entrySet()) {
+            if (possibleJudge.getValue() == n-1) {
+                return possibleJudge.getKey();
+            }
+        }
+        return -1;
     }
 }
