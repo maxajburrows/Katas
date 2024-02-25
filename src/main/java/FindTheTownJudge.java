@@ -6,17 +6,13 @@ public class FindTheTownJudge {
 
     // Viewing trust array as a graph with the trust pairs as directed edges.
     public int findJudge(int n, int[][] trust) {
-        if (n == 1 && trust.length == 0) {
-            return 1;
-        }
-
         int[] trustCount = new int[n+1];
         for (int[] person : trust) {
             trustCount[person[0]]--;
             trustCount[person[1]]++;
         }
 
-        for (int i=0; i < trustCount.length; i++) {
+        for (int i=1; i <= n; i++) {
             if (trustCount[i] == n-1) {
                 return i;
             }
