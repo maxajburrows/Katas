@@ -12,8 +12,6 @@ public class SameTree {
             return false;
         }
 
-        boolean leftTree = isSameTree(p.left, q.left);
-        boolean rightTree = isSameTree(p.right, q.right);
-        return leftTree && rightTree;
+        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
     }
 }
