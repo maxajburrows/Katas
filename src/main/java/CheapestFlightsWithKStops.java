@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class CheapestFlightsWithKStops {
     public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
-        int[][] graphArray = new int[n][n-1];
+        int[][] graphArray = new int[n][n];
 
         for (int[] flight : flights) {
             graphArray[flight[0]][flight[1]] = flight[2];
