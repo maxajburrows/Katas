@@ -7,14 +7,14 @@ public class CheapestFlightsWithKStops {
         for (int[] flight : flights) {
             graphArray[flight[0]][flight[1]] = flight[2];
         }
-        return shortestPath(graphArray, src, dst, k, 0, 1);
+        return shortestPath(graphArray, src, dst, k, 0, 0);
     }
 
     private int shortestPath(int[][] graphArray, int src, int dst, int k, int total, int steps) {
         if (src == dst) {
             return total;
         }
-        if (steps == k) {
+        if (steps > k) {
             return Integer.MAX_VALUE;
         }
         ArrayList<Integer> paths = new ArrayList<>();
