@@ -3,7 +3,7 @@ package DiameterOfBinaryTree;
 public class DiameterOfBinaryTree {
     public int diameterOfBinaryTree(TreeNode root) {
         if (root.left == null && root.right == null) {
-            return 0;
+            return 1;
         }
         int leftTreePathLength = 0;
         int rightTreePathLength = 0;
@@ -13,6 +13,6 @@ public class DiameterOfBinaryTree {
         if (root.right != null) {
             rightTreePathLength = diameterOfBinaryTree(root.right);
         }
-        return leftTreePathLength+rightTreePathLength+1;
+        return leftTreePathLength+rightTreePathLength;
     }
 }
