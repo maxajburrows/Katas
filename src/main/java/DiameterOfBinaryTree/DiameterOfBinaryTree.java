@@ -2,11 +2,17 @@ package DiameterOfBinaryTree;
 
 public class DiameterOfBinaryTree {
     public int diameterOfBinaryTree(TreeNode root) {
-        if (root == null) {
+        if (root.left == null && root.right == null) {
             return 0;
         }
-        int leftTreePathLength = diameterOfBinaryTree(root.left);
-        int rightTreePathLength = diameterOfBinaryTree(root.right);
+        int leftTreePathLength = 0;
+        int rightTreePathLength = 0;
+        if (root.left != null) {
+            leftTreePathLength = diameterOfBinaryTree(root.left);
+        }
+        if (root.right != null) {
+            rightTreePathLength = diameterOfBinaryTree(root.right);
+        }
         return leftTreePathLength+rightTreePathLength+1;
     }
 }
