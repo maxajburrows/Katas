@@ -34,7 +34,7 @@ public class FindBottomLeftTreeValue {
         return farLeft;
     }
 
-    private void findBottomLeftValueHelper(TreeNode root, int depth) {
+    private void findBottomLeftValueHelper2(TreeNode root, int depth) {
         if (root == null) {
             return;
         }
@@ -42,11 +42,11 @@ public class FindBottomLeftTreeValue {
             maxDepth = depth;
             farLeft = root.val;
         }
-        findBottomLeftValueHelper(root.left, depth+1);
-        findBottomLeftValueHelper(root.right, depth+1);
+        findBottomLeftValueHelper2(root.left, depth+1);
+        findBottomLeftValueHelper2(root.right, depth+1);
     }
 
-    private void findBottomLeftValueHelper1(TreeNode root, int depth) {
+    private void findBottomLeftValueHelper(TreeNode root, int depth) {
         if (root.left == null && root.right == null) {
             if (depth > maxDepth) {
                 maxDepth = depth;
@@ -54,16 +54,11 @@ public class FindBottomLeftTreeValue {
             }
             return;
         }
-        if (root.right == null) {
-            findBottomLeftValueHelper1(root.left, depth+1);
-            return;
+        if (root.left != null) {
+            findBottomLeftValueHelper(root.left, depth+1);
         }
-        if (root.left == null) {
-            findBottomLeftValueHelper1(root.right, depth+1);
-            return;
+        if (root.right != null) {
+            findBottomLeftValueHelper(root.right, depth+1);
         }
-        findBottomLeftValueHelper1(root.left, depth+1);
-        findBottomLeftValueHelper1(root.right, depth+1);
     }
-
 }
