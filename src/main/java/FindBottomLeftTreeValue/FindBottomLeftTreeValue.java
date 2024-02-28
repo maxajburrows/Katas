@@ -5,7 +5,7 @@ import java.util.LinkedList;
 public class FindBottomLeftTreeValue {
 
     // Use a right to left breadth first traversal
-    public int findBottomLeftValue(TreeNode root) {
+    public int findBottomLeftValueBFS(TreeNode root) {
         LinkedList<TreeNode> queue = new LinkedList<>();
         queue.addLast(root);
         int result = 0;
@@ -29,12 +29,24 @@ public class FindBottomLeftTreeValue {
     // Original solution using recursion to do a depth first traversal.
     int maxDepth = 0;
     int farLeft = 0;
-    public int findBottomLeftValueRecursiveDFS(TreeNode root) {
+    public int findBottomLeftValue(TreeNode root) {
         findBottomLeftValueHelper(root, 1);
         return farLeft;
     }
 
     private void findBottomLeftValueHelper(TreeNode root, int depth) {
+        if (root == null) {
+            return;
+        }
+        if (depth > maxDepth) {
+            maxDepth = depth;
+            farLeft = root.val;
+        }
+        findBottomLeftValueHelper(root.left, depth+1);
+        findBottomLeftValueHelper(root.right, depth+1);
+    }
+
+    private void findBottomLeftValueHelper1(TreeNode root, int depth) {
         if (root.left == null && root.right == null) {
             if (depth > maxDepth) {
                 maxDepth = depth;
@@ -43,14 +55,15 @@ public class FindBottomLeftTreeValue {
             return;
         }
         if (root.right == null) {
-            findBottomLeftValueHelper(root.left, depth+1);
+            findBottomLeftValueHelper1(root.left, depth+1);
             return;
         }
         if (root.left == null) {
-            findBottomLeftValueHelper(root.right, depth+1);
+            findBottomLeftValueHelper1(root.right, depth+1);
             return;
         }
-        findBottomLeftValueHelper(root.left, depth+1);
-        findBottomLeftValueHelper(root.right, depth+1);
+        findBottomLeftValueHelper1(root.left, depth+1);
+        findBottomLeftValueHelper1(root.right, depth+1);
     }
+
 }
