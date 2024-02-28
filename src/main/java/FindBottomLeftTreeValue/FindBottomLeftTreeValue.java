@@ -12,7 +12,6 @@ public class FindBottomLeftTreeValue {
 
         while (!queue.isEmpty()) {
             TreeNode nextNode = queue.poll();
-            // This should have a for loop as well with an if condition
             result = nextNode.val;
             if (nextNode.right != null) {
                 queue.addLast(nextNode.right);
