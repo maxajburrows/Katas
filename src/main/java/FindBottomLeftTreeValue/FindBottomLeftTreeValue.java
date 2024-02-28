@@ -1,10 +1,26 @@
 package FindBottomLeftTreeValue;
 
+import java.util.LinkedList;
+
 public class FindBottomLeftTreeValue {
 
     // Use a right to left breadth first traversal
     public int findBottomLeftValue(TreeNode root) {
-        return 0;
+        LinkedList<TreeNode> queue = new LinkedList<>();
+        queue.addLast(root);
+        int result = 0;
+
+        while (!queue.isEmpty()) {
+            TreeNode nextNode = queue.poll();
+            result = nextNode.val;
+            if (nextNode.right != null) {
+                queue.addLast(root.right);
+            }
+            if (nextNode.left != null) {
+                queue.addLast(root.left);
+            }
+        }
+        return result;
     }
 
 
