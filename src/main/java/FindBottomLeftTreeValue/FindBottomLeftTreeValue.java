@@ -1,9 +1,18 @@
 package FindBottomLeftTreeValue;
 
 public class FindBottomLeftTreeValue {
+
+    // Use a right to left breadth first traversal
+    public int findBottomLeftValue(TreeNode root) {
+        return 0;
+    }
+
+
+
+    // Original solution using recursion to do a depth first traversal.
     int maxDepth = 0;
     int farLeft = 0;
-    public int findBottomLeftValue(TreeNode root) {
+    public int findBottomLeftValueRecursiveDFS(TreeNode root) {
         findBottomLeftValueHelper(root, 1);
         return farLeft;
     }
