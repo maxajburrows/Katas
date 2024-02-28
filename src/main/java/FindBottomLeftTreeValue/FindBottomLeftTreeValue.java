@@ -25,15 +25,11 @@ public class FindBottomLeftTreeValue {
             }
             return;
         }
-        if (root.right == null) {
+        if (root.left != null) {
             findBottomLeftValueHelper(root.left, depth+1);
-            return;
         }
-        if (root.left == null) {
+        if (root.right != null) {
             findBottomLeftValueHelper(root.right, depth+1);
-            return;
         }
-        findBottomLeftValueHelper(root.left, depth+1);
-        findBottomLeftValueHelper(root.right, depth+1);
     }
 }
