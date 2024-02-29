@@ -10,12 +10,14 @@ public class EvenOddTree {
         int treeLevel = 0;
         while (!queue.isEmpty()) {
             int queueLength = queue.size();
+            int oldValue = 0;
             for (int i=0; i < queueLength; i++) {
                 TreeNode newNode = queue.poll();
-                if (treeLevel%2 == 0 && newNode.val%2 == 0) {
+                int newValue = newNode.val;
+                if (treeLevel%2 == 0 && (newValue%2 == 0 || newValue <= oldValue)) {
                     return false;
                 }
-                if (treeLevel%2 == 1 && newNode.val%2 == 1) {
+                if (treeLevel%2 == 1 && (newValue%2 == 1 || newValue >= oldValue)) {
                     return false;
                 }
                 if (newNode.left != null) {
@@ -24,6 +26,7 @@ public class EvenOddTree {
                 if (newNode.right != null) {
                     queue.addLast(newNode.right);
                 }
+                oldValue = newValue;
             }
             treeLevel++;
         }
