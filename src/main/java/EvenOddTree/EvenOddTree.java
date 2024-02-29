@@ -17,7 +17,7 @@ public class EvenOddTree {
                 if (treeLevel%2 == 0 && (newValue%2 == 0 || newValue <= oldValue)) {
                     return false;
                 }
-                if (treeLevel%2 == 1 && (newValue%2 == 1 || newValue >= oldValue)) {
+                if (treeLevel%2 == 1 && (newValue%2 == 1 || (newValue >= oldValue && i > 0))) {
                     return false;
                 }
                 if (newNode.left != null) {

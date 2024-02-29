@@ -14,8 +14,8 @@ class EvenOddTreeTest {
         TreeNode level3Node4 = new TreeNode(2);
 
         TreeNode level2Node1 = new TreeNode(3, level3Node1, level3Node2);
-        TreeNode level2Node2 = new TreeNode(7, level3Node2, null);
-        TreeNode level2Node3 = new TreeNode(9, null, level3Node3);
+        TreeNode level2Node2 = new TreeNode(7, level3Node3, null);
+        TreeNode level2Node3 = new TreeNode(9, null, level3Node4);
 
         TreeNode level1Node1 = new TreeNode(10, level2Node1, null);
         TreeNode level1Node2 = new TreeNode(4, level2Node2, level2Node3);
