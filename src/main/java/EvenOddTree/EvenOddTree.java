@@ -10,10 +10,7 @@ public class EvenOddTree {
         int treeLevel = 0;
         while (!queue.isEmpty()) {
             int queueLength = queue.size();
-            int oldValue = 0;
-            if (treeLevel%2 == 1) {
-                oldValue = Integer.MAX_VALUE;
-            }
+            int oldValue = (treeLevel%2 == 0) ? 0 : Integer.MAX_VALUE;
             for (int i=0; i < queueLength; i++) {
                 TreeNode newNode = queue.poll();
                 int newValue = newNode.val;
