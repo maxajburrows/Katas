@@ -24,8 +24,8 @@ public class EvenOddTree {
                 if (newNode.right != null) {
                     queue.addLast(newNode.right);
                 }
-                treeLevel++;
             }
+            treeLevel++;
         }
         return true;
     }
