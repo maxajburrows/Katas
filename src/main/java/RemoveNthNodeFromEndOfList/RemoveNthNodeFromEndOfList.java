@@ -7,22 +7,26 @@ public class RemoveNthNodeFromEndOfList {
         }
 
         ListNode traverseNode = head;
+        ListNode replaceNode = head;
         int listLength = 1;
         while (traverseNode.next != null) {
             traverseNode = traverseNode.next;
             listLength++;
+            if (listLength >= n-1) {
+                replaceNode = replaceNode.next;
+            }
         }
-        ListNode currentNode = head;
-        for (int i=0; i < listLength-n-1; i++) {
-            currentNode = currentNode.next;
-        }
+//        ListNode currentNode = head;
+//        for (int i=0; i < listLength-n-1; i++) {
+//            currentNode = currentNode.next;
+//        }
         if (listLength == n) {
-            currentNode.val = currentNode.next.val;
+            replaceNode.val = replaceNode.next.val;
         }
-        if (currentNode.next == null) {
-            currentNode = null;
+        if (replaceNode.next == null) {
+            replaceNode = null;
         } else {
-            currentNode.next = currentNode.next.next;
+            replaceNode.next = replaceNode.next.next;
         }
         return head;
     }
