@@ -12,7 +12,7 @@ public class RemoveNthNodeFromEndOfList {
         while (traverseNode.next != null) {
             traverseNode = traverseNode.next;
             listLength++;
-            if (listLength >= n-1) {
+            if (listLength > n+1) {
                 replaceNode = replaceNode.next;
             }
         }
