@@ -9,7 +9,7 @@ public class RemoveNthNodeFromEndOfList {
             listLength++;
         }
         ListNode currentNode = head;
-        for (int i=0; i < listLength-n; i++) {
+        for (int i=0; i < listLength-n-1; i++) {
             currentNode = currentNode.next;
         }
         if (currentNode.next == null) {
