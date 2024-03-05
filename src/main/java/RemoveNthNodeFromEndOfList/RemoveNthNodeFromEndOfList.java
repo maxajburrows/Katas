@@ -12,7 +12,11 @@ public class RemoveNthNodeFromEndOfList {
         for (int i=0; i < listLength-n; i++) {
             currentNode = currentNode.next;
         }
-        currentNode.next = currentNode.next.next;
+        if (currentNode.next == null) {
+            currentNode = null;
+        } else {
+            currentNode.next = currentNode.next.next;
+        }
         return head;
     }
 }
