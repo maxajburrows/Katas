@@ -2,6 +2,10 @@ package RemoveNthNodeFromEndOfList;
 
 public class RemoveNthNodeFromEndOfList {
     public ListNode removeNthFromEnd(ListNode head, int n) {
+        if (head.next == null && n == 1) {
+            return null;
+        }
+
         ListNode traverseNode = head;
         int listLength = 1;
         while (traverseNode.next != null) {
