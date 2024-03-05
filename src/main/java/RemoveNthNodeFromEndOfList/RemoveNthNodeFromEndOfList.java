@@ -16,10 +16,6 @@ public class RemoveNthNodeFromEndOfList {
                 replaceNode = replaceNode.next;
             }
         }
-//        ListNode currentNode = head;
-//        for (int i=0; i < listLength-n-1; i++) {
-//            currentNode = currentNode.next;
-//        }
         if (listLength == n) {
             replaceNode.val = replaceNode.next.val;
         }
