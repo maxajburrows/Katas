@@ -1,23 +1,24 @@
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 public class ProductOfNumbers {
-    ArrayList<Integer> numbers;
+    int[] numbers;
+    int size;
     public ProductOfNumbers() {
-        numbers = new ArrayList<>();
+        numbers = new int[40000];
+        size = 0;
     }
 
     public void add(int num) {
-        numbers.add(num);
+        numbers[size] = num;
+        size++;
     }
 
     public int getProduct(int k) {
-        Integer cutOff = numbers.size() - k;
+        int cutOff = size - k;
         int product = 1;
-        for (int i = cutOff; i < numbers.size(); i++) {
-            product *= numbers.get(i);
+        for (int i = cutOff; i < size; i++) {
+            product *= numbers[i];
         }
         return product;
     }
