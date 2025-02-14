@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class IsValidSudoku {
     public boolean isValidSudoku(char[][] board) {
@@ -13,13 +14,13 @@ public class IsValidSudoku {
 
     private static boolean checkRows(char[][] board) {
         for (char[] row : board) {
-            HashMap<Character, Character> valueMap = new HashMap<>();
+            HashSet<Character> valueMap = new HashSet<>();
             for (int i = 0; i < row.length; i++) {
                 if (row[i] != '.') {
-                    if (valueMap.containsKey(row[i])) {
+                    if (valueMap.contains(row[i])) {
                         return false;
                     }
-                    valueMap.put(row[i], row[i]);
+                    valueMap.add(row[i]);
                 }
             }
         }
@@ -28,13 +29,13 @@ public class IsValidSudoku {
 
     private boolean checkColumns(char[][] board) {
         for (int i = 0; i < board.length; i++) {
-            HashMap<Character, Character> valueMap = new HashMap<>();
+            HashSet<Character> valueMap = new HashSet<>();
             for (char[] row: board) {
                 if (row[i] != '.') {
-                    if (valueMap.containsKey(row[i])) {
+                    if (valueMap.contains(row[i])) {
                         return false;
                     }
-                    valueMap.put(row[i], row[i]);
+                    valueMap.add(row[i]);
                 }
             }
         }
