@@ -10,6 +10,6 @@ public class TwoSum {
                 }
             }
         }
-        return null;
+        return new int[0];
     }
 }
