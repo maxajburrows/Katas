@@ -15,9 +15,10 @@ public class ProductOfNumbers {
 
     public int getProduct(int k) {
         Integer cutOff = numbers.size() - k;
-
-        return numbers.stream()
-                .skip(cutOff)
-                .reduce(1, (a, b) -> a * b);
+        int product = 1;
+        for (int i = cutOff; i < numbers.size(); i++) {
+            product *= numbers.get(i);
+        }
+        return product;
     }
 }
