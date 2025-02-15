@@ -1,5 +1,10 @@
+import java.util.ArrayList;
+
 public class PunishmentNumber {
+    ArrayList<Integer> numbers = new ArrayList<>();
+
     public int punishmentNumber(int n) {
-        return 0;
+        int square = n * n;
+        return square;
     }
 }
