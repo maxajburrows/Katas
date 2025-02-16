@@ -24,6 +24,9 @@ public class AllOne {
             keyMap.put(key, keyMap.get(key) + 1);
             return;
         }
+        if (keyMap.isEmpty()) {
+            maxKey = key;
+        }
         keyMap.put(key, 1);
         minKey = key;
     }
