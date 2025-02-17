@@ -1,17 +1,12 @@
 import java.util.HashMap;
 
 public class AllOne {
-    HashMap<String, Integer> keyMap;
-    int max;
-    int min;
-    String maxKey;
-    String minKey;
+    HashMap<String, Integer> keyMap = new HashMap<>();
+    int max = 1;
+    int min = 1;
+    String maxKey = "";
+    String minKey = "";
     public AllOne() {
-        keyMap = new HashMap<>();
-        maxKey = "";
-        minKey = "";
-        max = 1;
-        min = 1;
     }
 
     public void inc(String key) {
