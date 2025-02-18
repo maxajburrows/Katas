@@ -2,6 +2,11 @@
 <project version="4">
   <component name="RemoteRepositoriesConfiguration">
     <remote-repository>
+      <option name="id" value="rabo-nexus-cloud1" />
+      <option name="name" value="rabo-nexus-cloud1" />
+      <option name="url" value="https://repo.nexuscloud.aws.rabo.cloud/repository/gr-maven2-2/" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="central" />
       <option name="name" value="Central Repository" />
       <option name="url" value="https://repo.maven.apache.org/maven2" />
@@ -12,9 +17,24 @@
       <option name="url" value="https://repo1.maven.org/maven2" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="wonen-fpx" />
+      <option name="name" value="wonen-fpx" />
+      <option name="url" value="https://pkgs.dev.azure.com/raboweb/wonen-fpx/_packaging/wonen-fpx/maven/v1" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="jboss.community" />
       <option name="name" value="JBoss Community repository" />
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="rabo-nexus-cloud" />
+      <option name="name" value="rabo-nexus-cloud" />
+      <option name="url" value="https://repo.nexuscloud.aws.rabo.cloud/repository/gr-maven2-2/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Central Repository" />
+      <option name="url" value="https://repo.nexuscloud.aws.rabo.cloud/repository/gr-maven2-2/" />
     </remote-repository>
   </component>
 </project>
