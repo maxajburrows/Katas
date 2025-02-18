@@ -1,31 +1,16 @@
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 public class Permutations {
     public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> permutations = new ArrayList<>();
-        HashSet<List<Integer>> seenPermutations = new HashSet<>();
-        for (int i = nums.length-1; i >=0; i--) {
-            List<Integer> arrayCopy = new ArrayList<>();
-            for (int j=0; j < nums.length; j++) {
-                if (j != i) {
-                    arrayCopy.add(nums[j]);
-                }
-            }
-            List<List<Integer>> smallerArrayPermutations = smallerArray(arrayCopy);
-            for (List<Integer> list : smallerArrayPermutations) {
-                list.add(nums[i]);
-                if (!seenPermutations.contains(list)) {
-                    seenPermutations.add(list);
-                    permutations.add(list);
-                }
-            }
+        List<Integer> numsList = new ArrayList<>();
+        for (int num : nums) {
+            numsList.add(num);
         }
-        return permutations;
+        return permutations(numsList);
     }
 
-    private List<List<Integer>> smallerArray(List<Integer> reducedArray) {
+    private List<List<Integer>> permutations(List<Integer> reducedArray) {
         if (reducedArray.isEmpty()) {
             List<List<Integer>> emptyList = new ArrayList<>();
             emptyList.add(new ArrayList<>());
@@ -39,7 +24,7 @@ public class Permutations {
                     arrayCopy.add(reducedArray.get(j));
                 }
             }
-            List<List<Integer>> smallerArrayPermutations = smallerArray(arrayCopy);
+            List<List<Integer>> smallerArrayPermutations = permutations(arrayCopy);
             for (List<Integer> list : smallerArrayPermutations) {
                 list.add(reducedArray.get(i));
                 permutations.add(list);
