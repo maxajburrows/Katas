@@ -1,4 +1,4 @@
-package hasCycle;
+package HasCycle;
 
 public class ListNode {
       int val;
