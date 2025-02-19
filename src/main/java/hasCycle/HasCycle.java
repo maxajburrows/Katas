@@ -3,15 +3,19 @@ package hasCycle;
 import java.util.HashSet;
 
 public class HasCycle {
-    HashSet<ListNode> seenNodes = new HashSet<>();
     public boolean hasCycle(ListNode head) {
-        while (head != null) {
-            if (seenNodes.contains(head)) {
-                return true;
-            }
-            seenNodes.add(head);
-            head = head.next;
+        if (head == null || head.next == null) {
+            return false;
         }
-        return false;
+        ListNode fast = head.next;
+        ListNode slow = head;
+        while (fast != slow) {
+            if (fast == null || fast.next == null) {
+                return false;
+            }
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return true;
     }
 }
