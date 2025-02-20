@@ -9,16 +9,16 @@ public class AddBinary {
             int longEndChar = longer.charAt(longer.length() - 1 - i) - '0';
             int sum = shortEndChar + longEndChar + carry;
             if (sum == 0) {
-                result.insert(0, "0");
+                result.append("0");
                 carry = 0;
             } else if (sum == 1) {
-                result.insert(0, "1");
+                result.append("1");
                 carry = 0;
             } else if (sum == 2) {
-                result.insert(0, 0);
+                result.append("0");
                 carry = 1;
             } else {
-                result.insert(0, 1);
+                result.append("1");
                 carry = 1;
             }
         }
@@ -26,19 +26,19 @@ public class AddBinary {
             int longEndChar = longer.charAt(longer.length() - 1 - i) - '0';
             int sum = longEndChar + carry;
             if (sum == 0) {
-                result.insert(0, "0");
+                result.append("0");
                 carry = 0;
             } else if (sum == 1) {
-                result.insert(0, "1");
+                result.append("1");
                 carry = 0;
             } else {
-                result.insert(0, "0");
+                result.append("0");
                 carry = 1;
             }
         }
         if (carry == 1) {
-            result.insert(0, "1");
+            result.append("1");
         }
-        return result.toString();
+        return result.reverse().toString();
     }
 }
