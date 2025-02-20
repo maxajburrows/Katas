@@ -8,33 +8,14 @@ public class AddBinary {
             int shortEndChar = shorter.charAt(shorter.length() - 1 - i) - '0';
             int longEndChar = longer.charAt(longer.length() - 1 - i) - '0';
             int sum = shortEndChar + longEndChar + carry;
-            if (sum == 0) {
-                result.append("0");
-                carry = 0;
-            } else if (sum == 1) {
-                result.append("1");
-                carry = 0;
-            } else if (sum == 2) {
-                result.append("0");
-                carry = 1;
-            } else {
-                result.append("1");
-                carry = 1;
-            }
+            carry = sum / 2;
+            result.append(sum % 2);
         }
         for (int i = shorter.length(); i < longer.length(); i++) {
             int longEndChar = longer.charAt(longer.length() - 1 - i) - '0';
             int sum = longEndChar + carry;
-            if (sum == 0) {
-                result.append("0");
-                carry = 0;
-            } else if (sum == 1) {
-                result.append("1");
-                carry = 0;
-            } else {
-                result.append("0");
-                carry = 1;
-            }
+            carry = sum / 2;
+            result.append(sum % 2);
         }
         if (carry == 1) {
             result.append("1");
