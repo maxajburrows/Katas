@@ -16,22 +16,31 @@ public class AverageOfLevels {
         int levelNodesLeft = 1;
         int total = 0;
         int divisor = 0;
+        int missing = 0;
         while (!nodeQueue.isEmpty()) {
             TreeNode nextNode = nodeQueue.poll();
             levelNodesLeft--;
-            if (nextNode == null) {
-                continue;
-            }
             total += nextNode.val;
             divisor++;
-            if (levelNodesLeft == 0) {
+            if (levelNodesLeft == 0 || nodeQueue.isEmpty()) {
                 Double levelAverage = ((double) total) / divisor;
                 levelAverages.add(levelAverage);
                 level++;
-                levelNodesLeft = (int) Math.pow(level, 2);
+                levelNodesLeft = (int) Math.pow(2, level) - missing;
+                total = 0;
+                divisor = 0;
+                missing = 0;
             }
-            nodeQueue.add(nextNode.left);
-            nodeQueue.add(nextNode.right);
+            if (nextNode.left != null) {
+                nodeQueue.add(nextNode.left);
+            } else {
+                missing++;
+            }
+            if (nextNode.right != null) {
+                nodeQueue.add(nextNode.right);
+            } else {
+                missing++;
+            }
         }
         return levelAverages;
     }
