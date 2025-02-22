@@ -3,9 +3,9 @@ package leetcode.inProgress;
 public class SearchInsert {
     public int searchInsert(int[] nums, int target) {
         int start = 0;
-        int end = nums.length;
-        int mid = nums.length / 2;
+        int end = nums.length - 1;
         while (start <= end) {
+            int mid = (start+end)/2;
             if (nums[mid] == target) {
                 return mid;
             }
@@ -26,7 +26,6 @@ public class SearchInsert {
             } else {
                 end = mid-1;
             }
-            mid = (start+end)/2;
         }
         return -1;
     }
