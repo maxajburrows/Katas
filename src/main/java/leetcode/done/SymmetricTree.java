@@ -1,4 +1,4 @@
-package leetcode.inProgress;
+package leetcode.done;
 
 import leetcode.TreeNode;
 
