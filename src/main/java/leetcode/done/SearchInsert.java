@@ -1,4 +1,4 @@
-package leetcode.inProgress;
+package leetcode.done;
 
 public class SearchInsert {
     public int searchInsert(int[] nums, int target) {
