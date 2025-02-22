@@ -1,4 +1,4 @@
-package leetcode.inProgress.minimumAbsoluteDifferenceInBst;
+package leetcode.done.minimumAbsoluteDifferenceInBst;
 
 public class TreeNode {
     int val;
