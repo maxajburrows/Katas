@@ -33,17 +33,10 @@ public class TargetSum {
         HashMap<Integer, Integer> permutations = new HashMap<>();
         for (Integer permutation : subArrayPermutations.keySet()) {
             Integer addPermutation = permutation + nums.get(0);
-            if (permutations.containsKey(addPermutation)){
-                permutations.put(addPermutation, permutations.get(addPermutation) + subArrayPermutations.get(permutation));
-            } else {
-                permutations.put(addPermutation, subArrayPermutations.get(permutation));
-            }
+            permutations.merge(addPermutation, subArrayPermutations.get(permutation), Integer::sum);
+
             Integer subtractPermutation = permutation - nums.get(0);
-            if (permutations.containsKey(subtractPermutation)){
-                permutations.put(subtractPermutation, permutations.get(subtractPermutation) + subArrayPermutations.get(permutation));
-            } else {
-                permutations.put(subtractPermutation, subArrayPermutations.get(permutation));
-            }
+            permutations.merge(subtractPermutation, subArrayPermutations.get(permutation), Integer::sum);
         }
         return permutations;
     }
