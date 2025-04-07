@@ -1,35 +1,49 @@
 package leetcode.inProgress;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class TargetSum {
     public int findTargetSumWays(int[] nums, int target) {
-        int count = 0;
         List<Integer> numsList = new ArrayList<>();
         for (int num : nums) {
             numsList.add(num);
         }
-        List<Integer> permutations = addSubArray(numsList);
-        for (Integer permutation : permutations) {
-            if (permutation == target) count++;
-        }
-        return count;
+        HashMap<Integer, Integer> permutations = addSubArray(numsList);
+        return permutations.getOrDefault(target, 0);
     }
 
-    public List<Integer> addSubArray(List<Integer> nums) {
+    public HashMap<Integer, Integer> addSubArray(List<Integer> nums) {
         if (nums.size() == 1) {
-            return List.of(nums.get(0), -nums.get(0));
+            HashMap<Integer, Integer> baseMap = new HashMap<>();
+            if (nums.get(0) == 0) {
+                baseMap.put(0, 2);
+            } else {
+                baseMap.put(nums.get(0), 1);
+                baseMap.put(-nums.get(0), 1);
+            }
+            return baseMap;
         }
-        List<Integer> permutations = new ArrayList<>();
         List<Integer> newList = new ArrayList<>();
         for (int j=1; j < nums.size(); j++) {
             newList.add(nums.get(j));
         }
-        List<Integer> subArrayPermutations = addSubArray(newList);
-        for (Integer permutation : subArrayPermutations) {
-            permutations.add(permutation + nums.get(0));
-            permutations.add(permutation - nums.get(0));
+        HashMap<Integer, Integer> subArrayPermutations = addSubArray(newList);
+        HashMap<Integer, Integer> permutations = new HashMap<>();
+        for (Integer permutation : subArrayPermutations.keySet()) {
+            Integer addPermutation = permutation + nums.get(0);
+            if (permutations.containsKey(addPermutation)){
+                permutations.put(addPermutation, permutations.get(addPermutation) + subArrayPermutations.get(permutation));
+            } else {
+                permutations.put(addPermutation, subArrayPermutations.get(permutation));
+            }
+            Integer subtractPermutation = permutation - nums.get(0);
+            if (permutations.containsKey(subtractPermutation)){
+                permutations.put(subtractPermutation, permutations.get(subtractPermutation) + subArrayPermutations.get(permutation));
+            } else {
+                permutations.put(subtractPermutation, subArrayPermutations.get(permutation));
+            }
         }
         return permutations;
     }
